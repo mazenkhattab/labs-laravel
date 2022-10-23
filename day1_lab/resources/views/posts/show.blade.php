@@ -8,9 +8,8 @@
             </div>
             <div class="w-100 bg-white border">
                 <div class="100 bg-white mt-2 mb-2">
-                Title: Special title treatment
-                Description:<br>
-                with supporting text below as a natural lead in to additional content.
+                Title: {{$post->title}}<br>
+                Description: {{$post->description}}<br>
                 </div>
             </div>
 
@@ -21,14 +20,16 @@
             </div>
             <div class="w-100 bg-white border">
                 <div class="100 bg-white mt-2 mb-2">
-                Name: Ahmed <br>
-                Email:Ahmed@gmail.com <br>
-                Created At : thursday 
+                Name: {{$user->name}} <br>
+                Email:{{$user->email}} <br>
+                Created At : {{$post->created_at}} 
                
                 
                 </div>
             </div>
-
+<div>
+  
+</div>
         </div>
    
 @endsection
