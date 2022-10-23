@@ -18,10 +18,6 @@ class PostSeeder extends Seeder
      */
     public function run()
     { 
-        \App\Models\post::factory()->create([
-                'title' => 'Test User',
-                'description' => 'test description',
-                'user_id' => '1',
-            ]);
+        post::factory()->count(20)->create();
     }
 }

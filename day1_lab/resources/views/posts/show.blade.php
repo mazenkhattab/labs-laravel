@@ -24,7 +24,7 @@
                 Email:{{$user->email}} <br>
                 Created At : {{$post->created_at}} 
                
-                
+            
                 </div>
             </div>
 <div>

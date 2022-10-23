@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\User;
 
 
+
 class PostController extends Controller
 {
     public function index()
@@ -30,10 +31,14 @@ class PostController extends Controller
     {    $post = Post::find($postId);
         $userid=  $post->user_id;
         $user= user::find($userid);
+        foreach ($post->comments as $comment) {
+            var_dump($comment);
+        }
         
        return view('posts.show',[
         "post" => $post,
         'user'=> $user,
+        
        ]);
     }
 
