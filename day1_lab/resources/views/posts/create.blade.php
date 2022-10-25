@@ -6,12 +6,19 @@
           @csrf
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Title</label>
-              <input name="title" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <input name="title" type="text" class="form-control" >
+              @error('title')
+                        <p class="text-danger">{{ $message }}</p>
+              @enderror
             </div>
+           
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Description</label>
-                <input name="description" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input name="description" type="text" class="form-control">
+                @error('description')
+                        <p class="text-danger">{{ $message }}</p>
+              @enderror
               </div>
 
               <div class="mb-3">
@@ -24,6 +31,9 @@
               </div>
          
             <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <form action="">
+            
           </form>
    
 @endsection

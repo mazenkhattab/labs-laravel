@@ -3,17 +3,24 @@
 @section('title') edit @endsection
 
 @section('content')
+
         <form action="{{route('posts.update',$postid)}}" method="post">
          @method('PUT')
           @csrf
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Title</label>
               <input type="text" value="{{$post->title}}" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              @error('title')
+                        <p class="text-danger">{{ $message }}</p>
+              @enderror
             </div>
 
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Description</label>
                 <input  value="{{$post->description}}" name="description" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                @error('description')
+                        <p class="text-danger">{{ $message }}</p>
+              @enderror
               </div>
 
               <div class="mb-3">

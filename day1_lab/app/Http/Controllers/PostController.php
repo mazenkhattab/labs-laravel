@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use  App\Http\Requests\StorePostRequest;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 
 class PostController extends Controller
@@ -42,9 +45,9 @@ class PostController extends Controller
        ]);
     }
 
-    public function store()
+    public function store(StorePostRequest $request)
     { 
-        $data = request()->all();
+        $data = $request->all();
 
         Post::create([
             'title' => request()->title,
@@ -70,11 +73,11 @@ class PostController extends Controller
        return to_route('posts.index');
     }
 
-    public function update($postid){
+    public function update($postid,StorePostRequest $request){
        $post=post::find($postid);
-       $post->title =  request()->title;
-       $post->description =  request()->description;
-       $post->user_id =  request()->post_creator;
+       $post->title = $request->title;
+       $post->description = $request->description;
+       $post->user_id = $request->post_creator;
        $post->save();
         return to_route('posts.index');
     }

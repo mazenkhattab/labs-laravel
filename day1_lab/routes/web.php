@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,7 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 // Route::get('/test', function () {
 //     $testName = 'ahmedasdasdasdd';
@@ -29,10 +28,15 @@ Route::get('/', function () {
 //     ]);
 // });
 
-Route::get('posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('posts/create',[PostController::class, 'create'])->name('posts.create');
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-Route::get('/posts/{post}/edit',[PostController::class,'edit'])->name('posts.edit');
-Route::put('/posts/{post}',[PostController::class,'update'])->name('posts.update');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+Route::get('/', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
+Route::get('posts', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
+Route::get('posts/create',[PostController::class, 'create'])->name('posts.create')->middleware('auth');
+Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware('auth');
+Route::get('/posts/{post}/edit',[PostController::class,'edit'])->name('posts.edit')->middleware('auth');
+Route::put('/posts/{post}',[PostController::class,'update'])->name('posts.update')->middleware('auth');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')->middleware('auth');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

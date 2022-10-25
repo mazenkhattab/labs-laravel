@@ -12,6 +12,7 @@
       <th scope="col">Title</th>
       <th scope="col">Posted By</th>
       <th scope="col">Created At</th>
+      <th scope="col">slug </th>
       <th scope="col">Actions</th>
     </tr>
   </thead>
@@ -26,6 +27,7 @@
           <td>Not Defined</td>
         @endif
         <td>{{$post->created_at->toRfc822String()}}</td>
+        <td>{{$post->slug}}</td>
         <td>
             <a href="{{route('posts.show', $post['id'])}}" class="btn btn-info">View</a>
             {{-- <a href="{{route('posts.show', ['post' =>$post['id']])}}" class="btn btn-info">View</a> --}}
