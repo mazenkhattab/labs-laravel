@@ -12,6 +12,9 @@
                 Description: {{$post->description}}<br>
                 </div>
             </div>
+            <div>
+             <img src="{{asset("images/$image")}}" alt="not">
+            </div>
 
         </div>
         <div class="row container ">

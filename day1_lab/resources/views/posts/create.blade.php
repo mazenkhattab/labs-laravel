@@ -2,7 +2,7 @@
 
 @section('title') create @endsection
 @section('content')
-        <form method="POST" action="{{route('posts.store')}}">
+        <form method="POST" action="{{route('posts.store')}}" enctype="multipart/form-data">
           @csrf
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Title</label>
@@ -24,16 +24,19 @@
               <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Post Creator</label>
                 <select name="post_creator" class="form-control">
-                @foreach ($allUsers as $user)
+                  @foreach ($allUsers as $user)
                     <option value="{{$user->id}}">{{ $user->name }}</option>
                   @endforeach
                 </select>
               </div>
+              <div>
+                <label class="form-label" for="thumbnail">Thumbnail</label>
+                <input type="file" name="thumbnail" class="form-control w-25">
+              </div>
          
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
-          <form action="">
-            
-          </form>
+      
+         
    
 @endsection

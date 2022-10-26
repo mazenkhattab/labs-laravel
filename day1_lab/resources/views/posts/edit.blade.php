@@ -4,7 +4,7 @@
 
 @section('content')
 
-        <form action="{{route('posts.update',$postid)}}" method="post">
+        <form action="{{route('posts.update',$postid)}}" method="post" enctype="multipart/form-data">
          @method('PUT')
           @csrf
             <div class="mb-3">
@@ -30,6 +30,14 @@
                     <option value="{{$user->id}}">{{ $user->name }}</option>
                   @endforeach
                 </select>
+              </div>
+              <div>
+                <img src="{{asset("images/$image")}}" alt="not">
+               </div>
+
+              <div>
+                <label class="form-label" for="thumbnail">Upload new photo</label>
+                <input type="file" name="thumbnail" class="form-control w-25">
               </div>
          
             <button type="submit" class="btn btn-primary">update</button>
