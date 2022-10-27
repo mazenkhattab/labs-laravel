@@ -35,14 +35,18 @@ class PostController extends Controller
 
     public function show($postId)
     {    $post = Post::find($postId);
+        $comments= $post->comments;
+        
         $userid=  $post->user_id;
         $user= user::find($userid);
         $image=$post->post_image;
+       
 
        return view('posts.show',[
         "post" => $post,
         'user'=> $user,
        'image'=> $image,
+       'comments'=>$comments
        ]);
     }
 
@@ -104,7 +108,7 @@ class PostController extends Controller
        $post->title = $request->title;
        $post->description = $request->description;
        $post->user_id = $request->post_creator;
-
+if($request->hasfile("thumbnail")){
     $image=$post->post_image;
      $imagepath="images\\".$image;
       Storage::delete($imagepath);
@@ -113,6 +117,7 @@ class PostController extends Controller
       $newfile->storeAs('images',$newfile->hashName());
 
        $post->post_image = $newfile->hashName();
+    }
        $post->save();
         return to_route('posts.index');
     }

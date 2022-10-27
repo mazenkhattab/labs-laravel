@@ -10,9 +10,17 @@ class Comment extends Model
     /**
      * Get the parent commentable model (post or video).
      */
+    protected $fillable = [
+        'commentable_type',
+        'commentable_id	',
+        'body',
+    ];
+    
     public function commentable()
     {
         return $this->morphTo();
     }
+
+   
 }
  

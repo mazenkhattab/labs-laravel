@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\commentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,7 @@ use Illuminate\Support\Facades\Auth;
 //     ]);
 // });
 
-Route::get('/', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
+Route::get('/', [PostController::class, 'index'])->name('comments.index')->middleware('auth');
 Route::get('posts', [PostController::class, 'index'])->name('posts.index')->middleware('auth');
 Route::get('posts/create',[PostController::class, 'create'])->name('posts.create')->middleware('auth');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware('auth');
@@ -40,3 +41,9 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::post('/comments/{comment}', [commentController::class, 'store'])->name('comments.store');
+Route::delete('/comments/{comment}/{postid}', [commentController::class, 'destroy'])->name('comments.destroy');
+Route::put('/comments/{comment}/{postid}',[commentController::class,'update'])->name('comments.update')->middleware('auth');
+// route::resource('comments',commentController::class);
