@@ -54,7 +54,6 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     { 
-       
         $newfile= $request->file("thumbnail");
         if($request->hasFile("thumbnail")){
             $newfile->storeAs('images',$newfile->hashName());

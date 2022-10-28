@@ -25,7 +25,7 @@ class PruneOldPostsJob implements ShouldQueue
     
     public function __construct( )
     {
-        // $this->post = $post->withoutRelations();
+       
     }
 
     /**
