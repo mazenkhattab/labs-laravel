@@ -56,13 +56,21 @@ class PostController extends Controller
     { 
         $data = $request->all();
         $newfile= $request->file("thumbnail");
-        $newfile->storeAs('images',$newfile->hashName());
-        Post::create([  
+        if($request->hasFile("thumbnail")){
+            $newfile->storeAs('images',$newfile->hashName());
+            Post::create([  
+                'title' => request()->title,
+                'description' => request()->description,
+                'user_id' => request()->post_creator,
+                'post_image'=>$newfile->hashName()
+            ]);
+           
+        }else{  Post::create([  
             'title' => request()->title,
             'description' => request()->description,
-            'user_id' => request()->post_creator,
-            'post_image'=>$newfile->hashName()
-        ]);
+            'user_id' => request()->post_creator, 
+        ]);}
+       
         
         // $file= $request->hasfile('thumbnail');
       

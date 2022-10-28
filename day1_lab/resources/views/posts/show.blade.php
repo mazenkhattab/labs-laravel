@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div>
-             <img src="{{asset("images/$image")}}" alt="not">
+             <img src="{{asset("images/$image")}}" alt="">
             </div>
 
         </div>
