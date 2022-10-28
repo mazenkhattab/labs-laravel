@@ -44,6 +44,7 @@
           </form>
     
         </div>
+        @if (!$post->comments->isEmpty())
         <div class="mt-2 mb-2 align-items-center ">
            <h1>Comments </h1> 
             @foreach ($comments as $comment)
@@ -107,5 +108,7 @@
                     </div>
                 </div>
             </div>
-         
+            @else
+            <h1 class="text-center">No comments Found</h1>
+            @endif
 @endsection

@@ -46,4 +46,3 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('/comments/{comment}', [commentController::class, 'store'])->name('comments.store');
 Route::delete('/comments/{comment}/{postid}', [commentController::class, 'destroy'])->name('comments.destroy');
 Route::put('/comments/{comment}/{postid}',[commentController::class,'update'])->name('comments.update')->middleware('auth');
-// route::resource('comments',commentController::class);

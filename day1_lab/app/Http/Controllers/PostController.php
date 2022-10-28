@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
 use  App\Http\Requests\StorePostRequest;
+use App\Jobs\PruneOldPostsJob;
 use Illuminate\Database\Console\DumpCommand;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 
-
+use Illuminate\Support\Carbon;
 
 class PostController extends Controller
 {
@@ -36,6 +37,7 @@ class PostController extends Controller
     public function show($postId)
     {    $post = Post::find($postId);
         $comments= $post->comments;
+        // dd($comments);
         
         $userid=  $post->user_id;
         $user= user::find($userid);
@@ -93,14 +95,16 @@ class PostController extends Controller
     }
 
     public function destroy($postid){
-        $post = post::find($postid);
-      $image=$post->post_image;
-     $imagepath="images\\".$image;
-    //  dump($imagepath);
-      Storage::delete($imagepath);
-        $post->delete();
+    //     $post = post::find($postid);
+    //   $image=$post->post_image;
+    //  $imagepath="images\\".$image;
+    //   Storage::delete($imagepath);
+    //     $post->delete();
    
-       return to_route('posts.index');
+    //    return to_route('posts.index');
+     PruneOldPostsJob::dispatch();
+   
+    
     }
 
     public function update($postid,StorePostRequest $request){
