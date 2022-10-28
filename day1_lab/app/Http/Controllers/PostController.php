@@ -95,14 +95,14 @@ class PostController extends Controller
     }
 
     public function destroy($postid){
-    //     $post = post::find($postid);
-    //   $image=$post->post_image;
-    //  $imagepath="images\\".$image;
-    //   Storage::delete($imagepath);
-    //     $post->delete();
+        $post = post::find($postid);
+      $image=$post->post_image;
+     $imagepath="images\\".$image;
+      Storage::delete($imagepath);
+        $post->delete();
    
-    //    return to_route('posts.index');
-     PruneOldPostsJob::dispatch();
+       return to_route('posts.index');
+    //  PruneOldPostsJob::dispatch();
    
     
     }
