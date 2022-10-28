@@ -54,7 +54,7 @@ class PostController extends Controller
 
     public function store(StorePostRequest $request)
     { 
-        $data = $request->all();
+       
         $newfile= $request->file("thumbnail");
         if($request->hasFile("thumbnail")){
             $newfile->storeAs('images',$newfile->hashName());
@@ -110,6 +110,7 @@ class PostController extends Controller
         $post->delete();
    
        return to_route('posts.index');
+
     //  PruneOldPostsJob::dispatch();
    
     

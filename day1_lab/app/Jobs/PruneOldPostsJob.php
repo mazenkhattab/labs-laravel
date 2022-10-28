@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use app\Models\post;
+use App\Models\Post;
 use Illuminate\Support\Carbon;
 
 class PruneOldPostsJob implements ShouldQueue
@@ -23,9 +23,9 @@ class PruneOldPostsJob implements ShouldQueue
 
     public $post;
     
-    public function __construct(  )
+    public function __construct( )
     {
-        //
+        // $this->post = $post->withoutRelations();
     }
 
     /**
@@ -35,11 +35,9 @@ class PruneOldPostsJob implements ShouldQueue
      */
     public function handle()
     {
-         $oldposts = Post::where('created_at', '<=', Carbon::now()->subYears(2)->toDateTimeString())->get();
-         echo $oldposts;
-         echo 'trial';
-    //    return  Post::where('created_at', '<=', Carbon::now()->subYears(2)->toDateTimeString())->forceDelete();
-    // return Post::onlyTrashed()->whereDate('deleted_at', '<=', Carbon::now()->subYears(2)->toDateTimeString())->forceDelete();
+        Post::where('created_at', '<=', Carbon::now()->subYears(2)->toDateTimeString())->delete();
+       
+    //   
         
     }
 }
