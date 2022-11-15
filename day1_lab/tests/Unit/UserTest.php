@@ -12,7 +12,7 @@ class Usertest extends TestCase
      *
      * @return void
      */
-    public function testname()
+    public function test()
     {   
         $user = new  User_Test ;
         $this->assertEquals( 'mazen',$user->username());
